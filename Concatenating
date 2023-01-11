@@ -1,0 +1,28 @@
+# Create a nested list
+nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# Get the length of the nested list
+length = len(nested_list)
+print("Length of the nested list: ",length)
+
+# Concatenate two lists
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+concatenated_list = list1 + list2
+print("Concatenated list: ", concatenated_list)
+
+# Check membership in a list
+list3 = [1, 2, 3, 4, 5]
+print(3 in list3)
+
+# Iterate over a list
+for element in list3:
+    print(element)
+
+# Use indexing to access elements in a list
+print("First element of the list: ", list3[0])
+print("Third element of the list: ", list3[2])
+
+# Use slicing to access a range of elements in a list
+print("Elements from index 1 to 3: ", list3[1:4])
+
