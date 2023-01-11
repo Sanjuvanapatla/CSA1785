@@ -1,0 +1,38 @@
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def steps_to_get_desired_amount(a, b, c):
+    # a and b are the sizes of the jugs, c is the desired amount
+    if c > a and c > b:
+        return -1
+    if c % gcd(a, b) != 0:
+        return -1
+
+    # using bfs
+    visited = set()
+    q = [(0, 0, 0)]
+    while q:
+        x, y, steps = q.pop(0)
+        if x == c or y == c:
+            return steps
+        if (x, y) in visited:
+            continue
+        visited.add((x, y))
+        # pour water from jug x to jug y
+        q.append((x, min(x + y, b), steps + 1))
+        q.append((min(x + y, a), y, steps + 1))
+        # empty jug x or y
+        q.append((0, y, steps + 1))
+        q.append((x, 0, steps + 1))
+        # fill jug x or y
+        q.append((a, y, steps + 1))
+        q.append((x, b, steps + 1))
+    return -1
+
+# example usage
+a = 3
+b = 5
+c = 4
+print(steps_to_get_desired_amount(a, b, c))
