@@ -1,0 +1,34 @@
+my_list = []
+
+while True:
+    print("List operations:")
+    print("1. Add an element")
+    print("2. Append an element")
+    print("3. Extend a list")
+    print("4. Delete an element")
+    print("5. Exit")
+    
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        element = input("Enter the element to be added: ")
+        my_list.append(element)
+        print("Element added successfully!")
+    elif choice == 2:
+        element = input("Enter the element to be appended: ")
+        my_list.append(element)
+        print("Element appended successfully!")
+    elif choice == 3:
+        elements = input("Enter the list of elements to be extended: ")
+        my_list.extend(elements.split())
+        print("List extended successfully!")
+    elif choice == 4:
+        element = input("Enter the element to be deleted: ")
+        my_list.remove(element)
+        print("Element deleted successfully!")
+    elif choice == 5:
+        break
+    else:
+        print("Invalid choice. Please enter a valid choice.")
+
+print("Final list: ", my_list)
