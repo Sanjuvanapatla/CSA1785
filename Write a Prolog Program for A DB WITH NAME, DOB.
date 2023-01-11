@@ -1,0 +1,25 @@
+import sqlite3
+
+# Connect to or create a SQLite database
+conn = sqlite3.connect('people.db')
+
+# Create a cursor to execute SQL commands
+c = conn.cursor()
+
+# Create a table to store people's names and dates of birth
+c.execute('''
+    CREATE TABLE people (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        dob DATE
+    )
+''')
+
+# Insert some data into the table
+c.execute("INSERT INTO people VALUES (1, 'Alice', '1980-01-01')")
+c.execute("INSERT INTO people VALUES (2, 'Bob', '1985-02-15')")
+c.execute("INSERT INTO people VALUES (3, 'Charlie', '1990-03-31')")
+
+# Save the changes and close the connection
+conn.commit()
+conn.close()
