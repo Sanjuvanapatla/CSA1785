@@ -1,0 +1,20 @@
+def solve_8queen():
+    solutions = []
+    solve([-1] * 8, 0, [], solutions)
+    return solutions
+
+def solve(board, current_column, solution, solutions):
+    if current_column == 8:
+        solutions.append(solution)
+    else:
+        for row in range(8):
+            if is_valid(board, current_column, row):
+                board[current_column] = row
+                solve(board, current_column + 1, solution + [row], solutions)
+
+def is_valid(board, current_column, row):
+    for i in range(current_column):
+        if board[i] == row or \
+           abs(board[i] - row) == abs(i - current_column):
+            return False
+    return True
