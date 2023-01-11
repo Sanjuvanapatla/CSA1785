@@ -1,0 +1,29 @@
+def solve(puzzle):
+    chars = set(puzzle) - set("+=")
+    for perm in permutations(range(10), len(chars)):
+        mapping = dict(zip(chars, perm))
+        if valid(puzzle, mapping):
+            return mapping
+    return None
+
+def valid(puzzle, mapping):
+    left, right = puzzle.split("=")
+    left = eval_expr(left, mapping)
+    right = eval_expr(right, mapping)
+    return left == right
+
+def eval_expr(expr, mapping):
+    return eval("".join(mapping.get(c, c) for c in expr))
+
+import itertools
+def permutations(iterable, r=None):
+    pool = tuple(iterable)
+    n = len(pool)
+    r = n if r is None else r
+    for indices in itertools.product(range(n), repeat=r):
+        if len(set(indices)) == r:
+            yield tuple(pool[i] for i in indices)
+            
+puzzle = "SEND+MORE=MONEY"
+mapping = solve(puzzle)
+print(mapping)
