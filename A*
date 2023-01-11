@@ -1,0 +1,26 @@
+import heapq
+
+def astar(graph, start, goal):
+    # Create a priority queue to store the next node to visit
+    queue = [(0, start)]
+    # Create a dictionary to store the cost of visiting each node
+    cost_so_far = {start: 0}
+    # Create a dictionary to store the best path to each node
+    came_from = {}
+    while queue:
+        # Get the node with the lowest cost
+        current = heapq.heappop(queue)[1]
+        # If the current node is the goal, return the path
+        if current == goal:
+            return came_from
+        # Iterate through the current node's neighbors
+        for next in graph.neighbors(current):
+            new_cost = cost_so_far[current] + graph.cost(current, next)
+            # If this path is cheaper than any path we've seen before, update
+            # the cost and the best path for this node
+            if next not in cost_so_far or new_cost < cost_so_far[next]:
+                cost_so_far[next] = new_cost
+                priority = new_cost + heuristic(goal, next)
+                heapq.heappush(queue, (priority, next))
+                came_from[next] = current
+    return came_from
