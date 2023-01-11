@@ -1,0 +1,14 @@
+set1 = set(input("Enter elements for set1 separated by comma: ").split(","))
+set2 = set(input("Enter elements for set2 separated by comma: ").split(","))
+
+# union of sets
+print("Union :", set1.union(set2))
+
+# intersection of sets
+print("Intersection :", set1.intersection(set2))
+
+# difference of sets
+print("Difference :", set1.difference(set2))
+
+# symmetric difference of sets
+print("Symmetric Difference :", set1.symmetric_difference(set2))
