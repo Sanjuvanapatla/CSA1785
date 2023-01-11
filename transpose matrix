@@ -1,0 +1,15 @@
+
+def input_matrix():
+    rows = int(input("Enter the number of rows: "))
+    cols = int(input("Enter the number of columns: "))
+    matrix = [[int(input(f"Enter the value for position [{i},{j}]: ")) for j in range(cols)] for i in range(rows)]
+    return matrix
+
+matrix = input_matrix()
+transposed_matrix = [list(i) for i in zip(*matrix)]
+print("Original matrix:")
+for row in matrix:
+    print(row)
+print("Transposed matrix:")
+for row in transposed_matrix:
+    print(row)
