@@ -1,0 +1,12 @@
+% Define a rule for birds that can fly
+can_fly(bird) :-
+    bird = eagle;
+    bird = sparrow;
+    bird = parrot.
+
+% Query to check if a specific bird can fly
+?- can_fly(eagle).
+% Output: true
+
+?- can_fly(penguin).
+% Output: false
