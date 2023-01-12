@@ -1,0 +1,25 @@
+% Define the graph as a list of edges
+edge(a, b, 1).
+edge(a, c, 5).
+edge(b, d, 2).
+edge(c, d, 8).
+edge(c, e, 7).
+edge(d, e, 3).
+edge(d, f, 6).
+edge(e, f, 4).
+
+% Define the initial state and the goal state
+initial(a).
+goal(f).
+
+% Define the search predicate
+search(Goal, Current, Path, Cost) :-
+    bfs([[Current, Current, 0]], Goal, Path, Cost).
+
+% Define the breadth-first search predicate
+bfs([[Goal|Path]|_], Goal, [Goal|Path], Cost) :- !.
+bfs([[Current|Path]|Queue], Goal, FinalPath, Cost) :-
+    findall([Next, Current|Path], (edge(Current, Next, Cost1), \+ member(Next, Path), Cost is Cost1 + Cost2), NextStates),
+    append(Queue, NextStates, NewQueue),
+    sort(NewQueue, NextQueue),
+    bfs(NextQueue, Goal, FinalPath, Cost).
