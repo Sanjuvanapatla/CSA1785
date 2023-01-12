@@ -1,0 +1,19 @@
+% Define the knowledge base
+fact(a).
+fact(b).
+rule(c) :- fact(a), fact(b).
+
+% Define the forward chaining rule
+forward_chain(X) :- fact(X).
+forward_chain(X) :- rule(X), check_premises(X).
+
+% Define the rule checking predicate
+check_premises(X) :- rule(X), call(X).
+call(X) :- clause(X, Premises), check_premises(Premises).
+call((A,B)) :- call(A), call(B).
+
+% Run the forward chaining algorithm
+start :- forward_chain(c).
+?- start.
+% Run the forward chaining algorithm
+start :- forward_chain(c), write('Rule c is true').
