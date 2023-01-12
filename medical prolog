@@ -1,0 +1,25 @@
+% Define the symptoms
+symptom(fever).
+symptom(cough).
+symptom(sore_throat).
+symptom(runny_nose).
+
+% Define the diseases
+disease(influenza).
+disease(common_cold).
+
+% Define the relationships between symptoms and diseases
+has_symptom(influenza, fever).
+has_symptom(influenza, cough).
+has_symptom(influenza, sore_throat).
+has_symptom(common_cold, cough).
+has_symptom(common_cold, runny_nose).
+
+% Define the diagnosis rule
+diagnosis(Disease, Symptoms) :-
+    disease(Disease),
+    findall(Symptom, (has_symptom(Disease, Symptom), member(Symptom, Symptoms)), SymptomList),
+    length(Symptoms, L1),
+    length(SymptomList, L2),
+    L1 =:= L2.
+diagnosis(Disease, [fever, cough, sore_throat]).
