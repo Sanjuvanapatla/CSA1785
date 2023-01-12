@@ -1,0 +1,28 @@
+% Define the gender of each person
+female(pam).
+female(liz).
+female(ann).
+female(pat).
+
+male(tom).
+male(bob).
+male(jim).
+
+% Define the parent-child relationships
+mother(pam, liz).
+mother(pam, ann).
+mother(pat, bob).
+father(tom, liz).
+father(tom, ann).
+father(jim, bob).
+
+% Define the grandfather/grandmother relationships
+grandfather(X, Y) :- father(X, Z), father(Z, Y).
+grandmother(X, Y) :- mother(X, Z), mother(Z, Y).
+
+% Define the sister/brother relationships
+sister(X, Y) :- female(X), mother(Z, X), mother(Z, Y), X \= Y.
+brother(X, Y) :- male(X), mother(Z, X), mother(Z, Y), X \= Y.
+?- mother(pam, X).
+X = liz
+X = ann
