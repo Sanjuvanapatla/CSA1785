@@ -1,0 +1,14 @@
+% Define the rules
+rule1(X) :- premise1(X), premise2(X).
+rule2(X) :- premise3(X), rule1(X).
+rule3(X) :- premise4(X), rule2(X).
+
+% Define the premises
+premise1(a).
+premime2(b).
+premise3(c).
+premise4(d).
+
+% Define the query
+query(X) :- rule3(X).
+
